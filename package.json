@@ -1,0 +1,12 @@
+{
+  "name": "bestie-id-site",
+  "version": "1.0.0",
+  "description": "Fun bestie ID card generator with a backend that saves everyone's responses.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

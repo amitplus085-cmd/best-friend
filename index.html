@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bestie ID Co.</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap');
+
+  :root{
+    --cream: #fbf4e4;
+    --ink: #1a1a1a;
+    --plum: #4b2e83;
+    --orange: #ff6b3d;
+    --lime: #c8f169;
+    --line: #1a1a1a;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--cream);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    line-height: 1.5;
+  }
+
+  a{ color: inherit; }
+
+  /* ---------- NAV ---------- */
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 20px 6vw;
+    border-bottom: 2px solid var(--line);
+    position: sticky;
+    top:0;
+    background: var(--cream);
+    z-index: 50;
+  }
+  .logo{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo span.dot{
+    width:10px; height:10px; background: var(--orange); border-radius:50%;
+    display:inline-block;
+  }
+  .nav-links{ display:flex; gap: 28px; font-size: 0.92rem; font-weight:500; }
+  .nav-links a{ text-decoration:none; }
+  .nav-links a:hover{ text-decoration: underline; text-decoration-color: var(--orange); text-decoration-thickness: 2px; }
+  .nav-cta{
+    background: var(--ink); color: var(--cream);
+    padding: 9px 18px; border-radius: 40px; font-size:0.85rem; font-weight:700;
+    text-decoration:none;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 90px 6vw 70px;
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 40px;
+    align-items:center;
+    border-bottom: 2px solid var(--line);
+  }
+  @media (max-width: 800px){ .hero{ grid-template-columns: 1fr; padding: 50px 6vw; } }
+
+  .hero h1{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.3rem, 5.5vw, 3.6rem);
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+  }
+  .hero h1 .hl{
+    background: var(--lime);
+    padding: 0 8px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .hero p.lead{
+    margin-top: 22px;
+    font-size: 1.08rem;
+    max-width: 46ch;
+    color: #3a3a3a;
+  }
+  .hero-actions{ margin-top:30px; display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary{
+    background: var(--orange); color: var(--ink);
+    padding: 14px 26px; border-radius: 40px; font-weight:700;
+    text-decoration:none; border: 2px solid var(--line);
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    display:inline-block; font-size:0.95rem;
+  }
+  .btn-primary:hover{ transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+
+  .hero-card{
+    border: 2px solid var(--line);
+    background: white;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 8px 8px 0 var(--ink);
+    transform: rotate(2deg);
+  }
+  .hero-card .tag{
+    display:inline-block; background: var(--plum); color:white;
+    font-size:0.68rem; font-weight:700; padding: 4px 10px; border-radius: 20px;
+    letter-spacing: 0.4px; margin-bottom: 14px;
+  }
+  .hero-card .sample-line{ display:flex; justify-content:space-between; padding: 7px 0; border-bottom: 1px dashed #ccc; font-size:0.85rem; }
+  .hero-card .sample-line b{ font-family:'Space Grotesk',sans-serif; }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section-tag{
+    font-size: 0.75rem; font-weight: 700; color: var(--plum);
+  }
+
+  /* ---------- FORM SECTION ---------- */
+  .form-section{
+    padding: 70px 6vw 90px;
+    display:flex;
+    justify-content:center;
+    border-bottom: 2px solid var(--line);
+  }
+
+  .card{
+    width:100%;
+    max-width: 640px;
+    background: white;
+    border: 2px solid var(--line);
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 10px 10px 0 var(--ink);
+  }
+  @media (max-width:600px){ .card{ padding: 28px 22px; } }
+
+  .card h2{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 1.7rem;
+    margin-bottom: 6px;
+  }
+  .card .card-sub{ color:#5b5b5b; font-size:0.92rem; margin-bottom: 28px; }
+
+  form{ display:flex; flex-direction:column; gap: 18px; }
+
+  .field{ display:flex; flex-direction:column; gap:5px; }
+  .field label{
+    font-size: 0.78rem; font-weight:700; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .field .hint{ font-size:0.75rem; font-weight:400; color:#8a8a8a; text-transform:none; letter-spacing:0; }
+
+  .field input{
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    padding: 11px 13px;
+    font-family:'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    background: var(--cream);
+    outline:none;
+    transition: box-shadow 0.15s ease;
+  }
+  .field input:focus{ box-shadow: 3px 3px 0 var(--orange); }
+
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  @media (max-width:560px){ .row2{ grid-template-columns:1fr; } }
+
+  .section-divider{
+    margin: 6px 0 2px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--plum);
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    border-top: 2px dashed #ddd;
+    padding-top: 16px;
+  }
+
+  .submit-btn{
+    margin-top: 10px;
+    background: var(--ink); color: var(--cream);
+    border:2px solid var(--ink);
+    border-radius: 40px;
+    padding: 14px 24px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor:pointer;
+    box-shadow: 4px 4px 0 var(--orange);
+    transition: transform 0.15s ease;
+  }
+  .submit-btn:hover{ transform: translate(-2px,-2px); }
+
+  /* ---------- RESULT ---------- */
+  .result{ display:none; }
+  .result.show{ display:block; }
+  #form-view.hide{ display:none; }
+
+  .id-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 22px; }
+  .id-photo{
+    width: 74px; height: 90px;
+    border: 2px solid var(--line);
+    border-radius: 10px;
+    background: var(--lime);
+    display:flex; align-items:center; justify-content:center;
+    font-size: 2rem;
+  }
+  .id-badge{
+    background: var(--plum); color:white; font-size:0.68rem; font-weight:700;
+    padding: 5px 12px; border-radius: 20px; letter-spacing:0.4px;
+  }
+
+  .data-grid{ display:grid; grid-template-columns: auto 1fr; row-gap: 10px; column-gap: 16px; font-size: 0.92rem; }
+  .data-grid dt{ font-size:0.68rem; font-weight:700; text-transform:uppercase; color:#8a8a8a; align-self:center; }
+  .data-grid dd{ border-bottom: 1px dotted #ccc; padding-bottom:4px; font-weight:700; }
+
+  .verdict{
+    margin-top: 20px; padding: 16px 18px;
+    background: var(--lime);
+    border: 2px solid var(--line);
+    border-radius: 12px;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  .contact-strip{
+    margin-top: 16px;
+    padding: 14px 16px;
+    background: var(--cream);
+    border: 2px dashed var(--line);
+    border-radius: 12px;
+    font-size: 0.85rem;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .again-btn{
+    margin-top: 24px;
+    background: none; border: 2px solid var(--line); color: var(--ink);
+    padding: 10px 20px; border-radius: 40px; font-weight:700; font-size:0.85rem; cursor:pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .again-btn:hover{ background: var(--ink); color: var(--cream); }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding: 50px 6vw 40px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px;
+  }
+  footer .foot-left{ font-family:'Space Grotesk',sans-serif; font-weight:800; font-size:1.05rem; }
+  footer .foot-right{ font-size:0.85rem; color:#5b5b5b; display:flex; flex-direction:column; gap:6px; }
+  footer .foot-right a{ text-decoration:none; }
+  footer .foot-right a:hover{ text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo"><span class="dot"></span>Bestie ID Co.</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#form">Get ID</a>
+    <a href="#footer">Contact</a>
+    <a href="#" id="adminLink">All Responses</a>
+  </div>
+  <a href="#form" class="nav-cta">Start</a>
+</nav>
+
+<section class="hero" id="about">
+  <div>
+    <h1>Get your friend a <span class="hl">ID card</span> nobody asked for.</h1>
+    <p class="lead">A completely unnecessary but extremely important ID card, generated in under 60 seconds. Favorite food, dream destination, embarrassing life goals — we ask, you overshare, we certify.</p>
+    <div class="hero-actions">
+      <a href="#form" class="btn-primary">Fill it out →</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <span class="tag">SAMPLE ID</span>
+    <div class="sample-line"><span>Name</span><b>Definitely A Legend</b></div>
+    <div class="sample-line"><span>Snack</span><b>Whatever's left in the fridge</b></div>
+    <div class="sample-line"><span>Dream</span><b>Win an argument with mom</b></div>
+    <div class="sample-line"><span>Status</span><b>100% Certified</b></div>
+  </div>
+</section>
+
+<section class="form-section" id="form">
+  <div class="card">
+
+    <div id="form-view">
+      <span class="section-tag">STEP 1 OF 1</span>
+      <h2>Fill in your details</h2>
+      <p class="card-sub">Answer honestly. Or don't — we're generating a certificate, not conducting an audit.</p>
+
+      <form id="bestieForm">
+        <div class="row2">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" required placeholder="e.g. Definitely Not A Robot">
+          </div>
+          <div class="field">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" required>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="birthplace">Birth Place</label>
+            <input type="text" id="birthplace" required placeholder="city, chaos">
+          </div>
+          <div class="field">
+            <label for="color">Favorite Color</label>
+            <input type="text" id="color" required>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="food">Favorite Food</label>
+            <input type="text" id="food" required placeholder="the thing you'd fight for">
+          </div>
+          <div class="field">
+            <label for="movie">Favorite Movie</label>
+            <input type="text" id="movie" required>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="sport">Favorite Sport</label>
+            <input type="text" id="sport" required placeholder="couch-sitting counts">
+          </div>
+          <div class="field">
+            <label for="actor">Favorite Actor</label>
+            <input type="text" id="actor" required>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="actress">Favorite Actress</label>
+          <input type="text" id="actress" required>
+        </div>
+
+        <div class="field">
+          <label for="travel">Dream Travel Destination</label>
+          <input type="text" id="travel" required placeholder="where you'll go once you're rich">
+        </div>
+
+        <div class="field">
+          <label for="dream">Life Dream</label>
+          <input type="text" id="dream" required placeholder="be honest, no one's judging (we are)">
+        </div>
+
+        <div class="field">
+          <label for="hobby">Hobby / Secret Talent</label>
+          <input type="text" id="hobby" required>
+        </div>
+
+        <div class="section-divider">Contact Details</div>
+
+        <div class="row2">
+          <div class="field">
+            <label for="email">Email <span class="hint">(for official bestie updates)</span></label>
+            <input type="email" id="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" required placeholder="in case of emergency memes">
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Issue My ID →</button>
+      </form>
+    </div>
+
+    <div id="result-view" class="result">
+      <div class="id-top">
+        <div class="id-photo" id="photoEmoji">🙂</div>
+        <span class="id-badge">CERTIFIED BESTIE ID</span>
+      </div>
+
+      <dl class="data-grid">
+        <dt>Name</dt><dd id="r-name"></dd>
+        <dt>DOB</dt><dd id="r-dob"></dd>
+        <dt>Birth Place</dt><dd id="r-birthplace"></dd>
+        <dt>Color</dt><dd id="r-color"></dd>
+        <dt>Food</dt><dd id="r-food"></dd>
+        <dt>Movie</dt><dd id="r-movie"></dd>
+        <dt>Sport</dt><dd id="r-sport"></dd>
+        <dt>Actor</dt><dd id="r-actor"></dd>
+        <dt>Actress</dt><dd id="r-actress"></dd>
+        <dt>Wants to visit</dt><dd id="r-travel"></dd>
+        <dt>Dream</dt><dd id="r-dream"></dd>
+        <dt>Hobby</dt><dd id="r-hobby"></dd>
+      </dl>
+
+      <div class="verdict" id="verdict"></div>
+
+      <div class="contact-strip">
+        <span>📧 <span id="r-email"></span></span>
+        <span>📱 <span id="r-phone"></span></span>
+      </div>
+
+      <button class="again-btn" id="editBtn">Redo (in case you lied)</button>
+    </div>
+
+  </div>
+</section>
+
+<section class="form-section" id="admin-section" style="display:none; border-bottom:2px solid var(--line);">
+  <div class="card" style="max-width:820px;">
+    <span class="section-tag">DASHBOARD</span>
+    <h2>All Responses</h2>
+    <p class="card-sub">Every ID card anyone has generated on this link. Refresh anytime to see new ones.</p>
+
+    <div id="admin-gate">
+      <div class="field">
+        <label for="adminPassword">Admin Password</label>
+        <input type="password" id="adminPassword" placeholder="Enter password to view responses">
+      </div>
+      <button class="submit-btn" id="unlockBtn" style="margin-top:14px;">Unlock</button>
+      <div id="admin-auth-error" style="display:none; color:#9c3b34; font-size:0.85rem; margin-top:10px;">Wrong password. Try again.</div>
+    </div>
+
+    <div id="admin-content" style="display:none;">
+      <div id="admin-loading" style="font-size:0.9rem; color:#5b5b5b;">Loading responses…</div>
+      <div id="admin-empty" style="display:none; font-size:0.9rem; color:#5b5b5b;">No responses yet. Share the link and check back later.</div>
+      <div id="admin-error" style="display:none; font-size:0.9rem; color:#9c3b34;">Couldn't load responses right now. Try refreshing.</div>
+
+      <div id="admin-table-wrap" style="display:none; overflow-x:auto;">
+        <table id="admin-table" style="width:100%; border-collapse:collapse; font-size:0.83rem; margin-top:16px;">
+          <thead>
+            <tr id="admin-head" style="text-align:left; border-bottom:2px solid var(--line);"></tr>
+          </thead>
+          <tbody id="admin-body"></tbody>
+        </table>
+      </div>
+
+      <button class="again-btn" id="refreshBtn" style="margin-top:22px;">Refresh</button>
+    </div>
+
+    <a href="#" class="again-btn" id="backToFormBtn" style="margin-top:22px; margin-left:0; text-decoration:none; display:inline-block;">Back to form</a>
+  </div>
+</section>
+
+
+<footer id="footer">
+  <div class="foot-left">Bestie ID Co.</div>
+  <div class="foot-right">
+    <span>Questions, complaints, or friendship disputes:</span>
+    <a href="mailto:hello@bestie-id.example">hello@bestie-id.example</a>
+    <a href="tel:+910000000000">+91 00000 00000</a>
+  </div>
+</footer>
+
+<script>
+const form = document.getElementById('bestieForm');
+const formView = document.getElementById('form-view');
+const resultView = document.getElementById('result-view');
+const photoEmojis = ['🙂','😎','🤡','🧑‍🚀','🦸','🧑‍🎤','🥳','😏'];
+
+const verdicts = [
+  name => `${name} would survive a zombie apocalypse purely on snack supply and vibes.`,
+  name => `Scientists agree: ${name} peaked the moment they filled out this form.`,
+  name => `Legal name ${name}. Unofficial title: Most Likely To Ghost The Group Chat.`,
+  name => `${name} has been officially flagged as "too iconic for a normal ID photo."`,
+  name => `Warning: ${name} may cause spontaneous laughter and questionable life choices.`,
+  name => `${name}'s ID has been fast-tracked due to sheer main character energy.`
+];
+
+form.addEventListener('submit', async function(e){
+  e.preventDefault();
+  const get = id => document.getElementById(id).value.trim();
+
+  const dobRaw = get('dob');
+  let dobFormatted = dobRaw;
+  if(dobRaw){
+    const d = new Date(dobRaw);
+    dobFormatted = d.toLocaleDateString('en-US', { day:'2-digit', month:'long', year:'numeric' });
+  }
+
+  const name = get('name');
+
+  const entry = {
+    name: name,
+    dob: dobFormatted,
+    birthplace: get('birthplace'),
+    color: get('color'),
+    food: get('food'),
+    movie: get('movie'),
+    sport: get('sport'),
+    actor: get('actor'),
+    actress: get('actress'),
+    travel: get('travel'),
+    dream: get('dream'),
+    hobby: get('hobby'),
+    email: get('email'),
+    phone: get('phone'),
+    submittedAt: new Date().toISOString()
+  };
+
+  document.getElementById('r-name').textContent = entry.name;
+  document.getElementById('r-dob').textContent = entry.dob;
+  document.getElementById('r-birthplace').textContent = entry.birthplace;
+  document.getElementById('r-color').textContent = entry.color;
+  document.getElementById('r-food').textContent = entry.food;
+  document.getElementById('r-movie').textContent = entry.movie;
+  document.getElementById('r-sport').textContent = entry.sport;
+  document.getElementById('r-actor').textContent = entry.actor;
+  document.getElementById('r-actress').textContent = entry.actress;
+  document.getElementById('r-travel').textContent = entry.travel;
+  document.getElementById('r-dream').textContent = entry.dream;
+  document.getElementById('r-hobby').textContent = entry.hobby;
+  document.getElementById('r-email').textContent = entry.email;
+  document.getElementById('r-phone').textContent = entry.phone;
+
+  document.getElementById('photoEmoji').textContent = photoEmojis[Math.floor(Math.random()*photoEmojis.length)];
+  const pick = verdicts[Math.floor(Math.random()*verdicts.length)];
+  document.getElementById('verdict').textContent = pick(name || "This person");
+
+  formView.classList.add('hide');
+  resultView.classList.add('show');
+
+  // Save to the backend so the creator can see it later under "All Responses"
+  try{
+    await fetch('/api/submit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(entry)
+    });
+  }catch(err){
+    console.error('Could not save entry:', err);
+  }
+});
+
+document.getElementById('editBtn').addEventListener('click', function(){
+  resultView.classList.remove('show');
+  formView.classList.remove('hide');
+});
+
+// ---------- Admin: All Responses ----------
+const adminSection = document.getElementById('admin-section');
+const formSection = document.getElementById('form');
+const adminGate = document.getElementById('admin-gate');
+const adminContent = document.getElementById('admin-content');
+const adminAuthError = document.getElementById('admin-auth-error');
+const adminLoading = document.getElementById('admin-loading');
+const adminEmpty = document.getElementById('admin-empty');
+const adminErrorEl = document.getElementById('admin-error');
+const adminTableWrap = document.getElementById('admin-table-wrap');
+const adminHead = document.getElementById('admin-head');
+const adminBody = document.getElementById('admin-body');
+
+let adminPasswordValue = '';
+
+const COLUMNS = [
+  ['name','Name'], ['dob','DOB'], ['birthplace','Birth Place'], ['color','Color'],
+  ['food','Food'], ['movie','Movie'], ['sport','Sport'], ['actor','Actor'],
+  ['actress','Actress'], ['travel','Travel'], ['dream','Dream'], ['hobby','Hobby'],
+  ['email','Email'], ['phone','Phone'], ['submittedAt','Submitted']
+];
+
+async function loadResponses(){
+  adminLoading.style.display = 'block';
+  adminEmpty.style.display = 'none';
+  adminErrorEl.style.display = 'none';
+  adminTableWrap.style.display = 'none';
+  adminBody.innerHTML = '';
+  adminHead.innerHTML = '';
+
+  try{
+    const res = await fetch('/api/responses', {
+      headers: { 'x-admin-password': adminPasswordValue }
+    });
+
+    if(res.status === 401){
+      // Password was wrong — go back to the gate
+      adminContent.style.display = 'none';
+      adminGate.style.display = 'block';
+      adminAuthError.style.display = 'block';
+      return;
+    }
+
+    if(!res.ok){
+      throw new Error('request failed');
+    }
+    const entries = await res.json();
+
+    if(entries.length === 0){
+      adminLoading.style.display = 'none';
+      adminEmpty.style.display = 'block';
+      return;
+    }
+
+    entries.sort((a,b) => new Date(b.submittedAt || 0) - new Date(a.submittedAt || 0));
+
+    COLUMNS.forEach(([key, label]) => {
+      const th = document.createElement('th');
+      th.textContent = label;
+      th.style.padding = '8px 10px';
+      th.style.whiteSpace = 'nowrap';
+      adminHead.appendChild(th);
+    });
+
+    entries.forEach(entry => {
+      const tr = document.createElement('tr');
+      tr.style.borderBottom = '1px solid #eee';
+      COLUMNS.forEach(([key]) => {
+        const td = document.createElement('td');
+        let val = entry[key] || '—';
+        if(key === 'submittedAt' && entry[key]){
+          val = new Date(entry[key]).toLocaleString();
+        }
+        td.textContent = val;
+        td.style.padding = '8px 10px';
+        td.style.whiteSpace = 'nowrap';
+        tr.appendChild(td);
+      });
+      adminBody.appendChild(tr);
+    });
+
+    adminLoading.style.display = 'none';
+    adminTableWrap.style.display = 'block';
+
+  }catch(err){
+    console.error('Error loading responses:', err);
+    adminLoading.style.display = 'none';
+    adminErrorEl.style.display = 'block';
+  }
+}
+
+document.getElementById('adminLink').addEventListener('click', function(e){
+  e.preventDefault();
+  formSection.style.display = 'none';
+  adminSection.style.display = 'flex';
+  // Always start at the password gate, hide any previously loaded data
+  adminContent.style.display = 'none';
+  adminGate.style.display = 'block';
+  adminAuthError.style.display = 'none';
+  document.getElementById('adminPassword').value = '';
+  window.scrollTo({top: 0, behavior:'smooth'});
+});
+
+document.getElementById('unlockBtn').addEventListener('click', function(){
+  const entered = document.getElementById('adminPassword').value;
+  adminPasswordValue = entered;
+  adminGate.style.display = 'none';
+  adminContent.style.display = 'block';
+  loadResponses();
+});
+
+document.getElementById('adminPassword').addEventListener('keydown', function(e){
+  if(e.key === 'Enter'){
+    document.getElementById('unlockBtn').click();
+  }
+});
+
+document.getElementById('backToFormBtn').addEventListener('click', function(e){
+  e.preventDefault();
+  adminSection.style.display = 'none';
+  formSection.style.display = 'flex';
+});
+
+document.getElementById('refreshBtn').addEventListener('click', loadResponses);
+</script>
+
+
+</body>
+</html>
